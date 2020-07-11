@@ -1,0 +1,139 @@
+kestrel is a default web server which is used by Asp.net core web applications by default
+
+Getting Acquainted with ASP.NET Core: Demo: Starting a New ASP.NET Core Project
+
+
+Our Applications work in IIS EXpress but used Kestrel as a server here IIS used as a reveresed proxy server
+
+Getting Acquainted with ASP.NET Core: Demo: Starting a New ASP.NET Core Project
+
+There is a HTTP request and server will give Response for HTTP Request. the code that handle the HTTP Request
+ and generate Response is called the Pipeline Code
+
+Service is a component which can be used as a common concern in the application
+
+A Web service, in the context of .NET, is a component that resides on a Web server and provides information
+ and services to other network applications using standard Web protocols such as HTTP and Simple Object Access
+ Protocol (SOAP)
+
+ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+this method tells that how an ASP.net core web application respond to indiviual requests.
+
+HTTP Request is a packet of information that one computer sends to another computer to communicate something.
+ To its core, HTTP Request is a packet of binary data sent by the Client to server
+
+when you send an http request their must be a response the pieces of code which handle the request
+and give you response will make the request pipeline.
+middlewares come in between request and response to configure or authorize the requests. e.g auth request to handle
+auth request their is a authentication middle ware if it find the request is authenticate then it will allow
+the request to enter and give response.
+
+----------MVC---------------
+MVC is an archtechtural pattern to implement user interfaces.
+to apply loose coupling and seperation of concerns
+
+Model: It handles the business logic of your Application Data. model is related to DATA.
+VIEW: handles the display of data
+Controller: It handles the communication between view and model also it handles the
+user inputs.
+controller and view on depend on model
+controller also depend on view.
+controller talk to view to display any model data.
+** to consume data from an API you have to send HHTP request to the API using a browser
+to return data in json.
+
+---Routing---
+routing matches the request URL with the method in the controller.
+in API use attribute based routing.
+
+--Models Dtos--
+CityDTO is used to send a single city and we get rid off anonymus objects
+
+--citydto is a model making its object in Citydatastore
+to consume an API a consumer send an HTTP request and he then get back a HTTP response
+this response contains status codes. client side app use these status codes to check
+what is going on.
+--100 codes area not used
+--200 codes are mostly for success
+200: OK, 201:Created, 204:No Content.for delete
+300:used for redirection
+400:mostly errors
+400:Errors
+401:unathorized
+403:Forbidden no access
+404: Not found means requested resource is not there.. resource doesnt exist
+409:Conflict
+
+500: Server did mistake client cant do anything for it.
+
+--output formatter
+your user can ask any type of json result format in accept header
+application/json will give you application-> json format
+application/xml will give you application-> Xml format
+default is json format
+output formatter deals with output
+
+--input formatters
+what format of data comes with a post request
+--for validations are also called data annotations
+we put required annotations in our models.
+--PUT can be used for fully updating data not the full updates.
+--PATCH can be used for partial updates.
+
+--Make a service and register that service to the container.
+inject instance of service to the Controller. (pointofintererst controller)
+
+
+----Steps of Asp.net core Web Api project---
+1. do some configurations in startup.cs file services.addMVC(); and app.useMVC();
+2. Addcontroller folder and make your first Cities Controller
+3. hit the Get request through postman.
+4. Configure your routing in web api use use attribute based routing.
+5. Create Models and add DTOS in models
+6. Add in memory datastore containning a list of data e.g CitiesDataStore.
+7. Try to show correct status codes about your application
+you have to create DTO for everything Create delete update 
+8. Create a DTO named PointOfInterestForCollectionDto.
+9.Input Validation--use Modelstate for validation
+10. Then you can write DataAnnotations means Validations like required checks 
+   for your DTOS in model classes.
+11. Add Validations just don't show response codes for errors handle
+those response code errors in your controllers.
+12. Update A resource. Full Resource. PUT Request. Make
+13. for partial updates use PATCH request
+14. implement Dependecy injection add a service logger into your controller
+15. Learned about logging must log exceptions for debugging
+16. Create Services
+17. Register and inject mailservice in pointofinterestcontroller mailserce.send at the end of remove method
+18. Make DB Context use EF Core and register your Database Context.
+19.Seeding The Database.. The principle of providing data to your database
+intial data to the database is called seeding the database
+20. replacing calls to the in memory data store with calls to the repository
+
+
+--IqueryAble
+in this approach a user of the data can apply where clause orderby clause on the data
+--as we need to call repositories from controllers so use constructor injection and inject
+repositories in our controllers.
+
+
+
+
+
+
+
+
+as we have made interface and extend our MailService from an Interface
+so that our controller is now not depending on the class it is dependent on
+interface and we injected service interface to our controller.
+--Add PointofInterest to a specific city is done
+--code related questions
+What is FormBody related attribute?
+what is CreatedAtRoute function used in return?
+Transient
+Scoped
+Singelton Services
+
+
+
+
